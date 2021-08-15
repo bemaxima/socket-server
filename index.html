@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Socket.IO</title>
+
+</head>
+
+<body>
+  <h2>Server is up.</h2>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  let id;
+  socket.emit('register', { ip: '185.25.32.14' });
+
+  socket.on('register_guid', guid => {
+    id = guid; // Will be used as an identifier.
+    const p = document.createElement('p');
+    p.textContent = `guid: ${guid}`;
+    document.body.appendChild(p);
+  });
+
+  socket.on('message', msg => console.log(msg));
+
+</script>
+
+</html>
